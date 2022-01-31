@@ -118,7 +118,11 @@ let g:smoothie_speed_exponentiation_factor=1.1
 
 "neoformat
 let g:neoformat_try_node_exe = 1
-autocmd BufWritePre *.svelte Neoformat
+    
+augroup nformat
+    autocmd!
+    autocmd BufWritePre *.svelte Neoformat
+augroup end
 
 "sveltelet
 let g:svelte_preprocessor_tags = [
