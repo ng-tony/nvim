@@ -44,12 +44,15 @@ nnoremap <silent> <leader>cx  :<C-u>CocList extensions<cr>
 
 " rename the current word in the cursor
 nmap <leader>cr  <Plug>(coc-rename)
-nmap <leader>cf  <Plug>(coc-format-selected)
+nmap <F2>  <Plug>(coc-rename)
 vmap <leader>cf  <Plug>(coc-format-selected)
 
 " run code actions
 vmap <silent> ga <Plug>(coc-codeaction-selected)<cr>
 nmap <silent> ga <Plug>(coc-codeaction-selected)<cr>
+
+vmap <silent> <c-q> <Plug>(coc-codeaction-selected)<cr>
+nmap <silent> <c-q> <Plug>(coc-codeaction-selected)<cr>
 
 function! s:check_back_space() abort
   let col = col('.') - 1
