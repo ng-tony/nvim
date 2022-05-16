@@ -1,20 +1,19 @@
 call plug#begin("~/.vim/plugged")
   " Plugin Section
-  " Plug 'psliwka/vim-smoothie'
   Plug 'tomasiser/vim-code-dark'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
-  Plug 'jiangmiao/auto-pairs'
   Plug 'ApZelos/blamer.nvim'
   Plug 'airblade/vim-gitgutter'
   Plug 'sbdchd/neoformat'
-  Plug 'evanleck/vim-svelte'
+
   "Language support
+  Plug 'evanleck/vim-svelte'
   Plug 'sheerun/vim-polyglot'
   call plug#end()
 
@@ -28,7 +27,7 @@ colorscheme codedark
 
 set expandtab
 set tabstop=4
-set shiftwidth=4
+set shiftwidth=2
 
 nnoremap ; : 
 nnoremap : ; 
@@ -47,15 +46,27 @@ set wildmode=longest:full,full
 
 let mapleader="\<space>"
 
+
+set splitbelow
+set splitright
+
 vnoremap <leader>y "+y
 nnoremap <leader><s-y> "+Y
 nnoremap <leader>p "+p
 
+inoremap <C-v> <ESC>"+pa
+cnoremap <C-v> <C-r>+
+vnoremap <C-c> "+y
+tnoremap <C-v> <C-\><C-n>p
+tnoremap <C-w> <C-\><C-n><C-w>
 set nowrap
 set title
 set listchars=tab:..
 
 command! IDate execute ';normal! O' . strftime('--- %c ---')
+command! Iterm execute ':20sp term://bash'
+
+nnoremap <C-`> :Iterm<CR>
 
 nnoremap <Leader>v :e $MYVIMRC<cr>
 
@@ -64,6 +75,9 @@ vnoremap P "_dP
 
 " replace in selection
 vnoremap <C-r> :s/\%V/g<left><left>
+
+set ignorecase
+set smartcase
 
 "nnoremap <silent> } :<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>
 "nnoremap <silent> { :<c-u>execute "keepjumps norm! " . v:count1 . "{"<cr>
@@ -75,15 +89,21 @@ nnoremap <silent><leader>1 :source $MYVIMRC \| :PlugInstall<CR>
 set guifont=Liberation\ Mono:h11
 "FZF
 nnoremap <C-p> :FZF<CR>
+let g:ctrlp_show_hidden = 1
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-space': 'vsplit'
   \}
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 "nmap <c-f> ;call fzf#vim#ag_raw("-- '^(?=.)'\'' ".expand('%'), {})<cr>
 nmap <c-f> ;BLines<cr>
 nmap <leader><C-F> ;Ag<cr>
+
+augroup myterm | au!
+    au TermOpen * if &buftype ==# 'terminal' | resize 20 | endif
+augroup end
+
 
 "COC
 let g:coc_global_extensions = ['coc-emmet', 'coc-yank', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
@@ -104,6 +124,10 @@ augroup CocGroup
 	autocmd BufNew,BufEnter * call s:disable_coc_for_type()
 augroup end
 
+"auto-pair"
+"does'nt wor lol
+let g:AutoPairsMapBS=0
+
 "Git Gutter
 let g:blamer_enabled = 1
 
@@ -112,9 +136,9 @@ highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 "smoothie
-let g:smoothie_speed_constant_factor=45
-let g:smoothie_update_interval=3
-let g:smoothie_speed_exponentiation_factor=1.1
+" let g:smoothie_speed_constant_factor=60
+" let g:smoothie_update_interval=3
+" let g:smoothie_speed_exponentiation_factor=1.1
 
 "neoformat
 let g:neoformat_try_node_exe = 1
