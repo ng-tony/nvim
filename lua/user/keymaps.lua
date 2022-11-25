@@ -35,15 +35,12 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
--- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
-
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
+-- keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -54,12 +51,19 @@ keymap("v", ">", ">gv", opts)
 
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<leader>o", ":NvimTreeFocus<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
+keymap("n", "<leader>fw", ":Telescope live_grep<CR>", opts)
+-- keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fF", function()
+	require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
+end)
+keymap("n", "gr", ":Telescope lsp_references<CR>", opts)
+keymap("n", "gd", ":Telescope lsp_definitions<CR>", opts)
+keymap("n", "gk", ":Telescope lsp_type_definitions<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
@@ -78,3 +82,51 @@ keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
 keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+
+-- harpoon
+
+keymap("n", "<leader>sa",  function() require("harpoon.mark").add_file() end, opts)
+keymap("n", "<leader>ss",  function() require("harpoon.ui").toggle_quick_menu() end, opts)
+
+-- custom
+keymap("n", ";", ":" )
+keymap("n", ":", ";" )
+keymap("v", ";", ":" )
+keymap("v", ":", ";" )
+keymap("n", "<leader>c", ":call GotoFileLine2()<cr>")
+keymap("n", "<c-c>", '"+yy')
+keymap("n", "<leader>99", ':call Wipeout()<cr>')
+keymap("n", "[d", function() vim.diagnostic.goto_prev {} end)
+keymap("n", "]d", function() vim.diagnostic.goto_next {} end)
+keymap("n", "[<S-d>", function() vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR} end)
+keymap("n", "]<S-d>", function() vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR} end)
+keymap("n", "}", ":<c-u>execute 'keepjumps normal!' v:count1 . '}'<cr>")
+keymap("n", "{", ":<c-u>execute 'keepjumps normal!' v:count1 . '{'<cr>")
+keymap("n", "n", ":<c-u>execute 'keepjumps normal!' v:count1 . 'n'<cr>")
+keymap("n", "N", ":<c-u>execute 'keepjumps normal!' v:count1 . 'N'<cr>")
+
+keymap("n", "<c-q>", function()
+	vim.lsp.buf.code_action()
+end)
+keymap("i", "<c-q>", function()
+	vim.lsp.buf.code_action()
+end)
+keymap("v", "<c-q>", function()
+	vim.lsp.buf.code_action()
+end)
+keymap("i", "<c-v>", '<C-r>+')
+keymap("i", "<c-BS>", '<C-o>db<c-o>x')
+keymap("i", "<c-del> ", "<esc>ldei")
+keymap("v", "<c-c>", '"+ygv<Esc>')
+keymap("v", "<c-v>", '"+gp')
+keymap("v", "<c-s-v>", '"gp')
+keymap("v", "y", 'ygv<Esc>')
+keymap("v", "<leader>rs", ":s//g<left><left>", {  desc = "Replace something in selection" })
+keymap("v", "<leader>rr", '"+ygv<Esc>:%s/<c-r>"/<c-r>"/g<left><left>', { desc = "Replace selction in all" })
+keymap("v", "<c-r>", ":s//g<left><left>", { desc = "Replace something in selection" })
+keymap("v", "}", ":<c-u>execute 'keepjumps normal!' v:count1 . '}'<cr>")
+keymap("v", "{", ":<c-u>execute 'keepjumps normal!' v:count1 . '{'<cr>")
+
+keymap("c", "<c-v>", "<c-r>+", opts)
+keymap("t", "<Esc>", "<C-\\><C-n>", opts)
+keymap("t", "<C-BS>", "<M-BS>", opts)
