@@ -49,13 +49,17 @@ keymap("v", ">", ">gv", opts)
 
 -- Plugins --
 
--- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-keymap("n", "<leader>o", ":NvimTreeFocus<CR>", opts)
+-- -- NvimTree
+-- keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+-- keymap("n", "<leader>o", ":NvimTreeFocus<CR>", opts)
 
+-- NeoTree
+keymap("n", "<leader>e", ":NeoTreeShowToggle<CR>", opts)
+keymap("n", "<leader>o", ":NeoTreeReveal<CR>", opts)
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>fw", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
 -- keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fF", function()
@@ -64,6 +68,7 @@ end)
 keymap("n", "gr", ":Telescope lsp_references<CR>", opts)
 keymap("n", "gd", ":Telescope lsp_definitions<CR>", opts)
 keymap("n", "gk", ":Telescope lsp_type_definitions<CR>", opts)
+keymap("n", "fp", ":Telescope neoclip<CR>", {desc = "Neoclip"})
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
@@ -88,6 +93,9 @@ keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 keymap("n", "<leader>sa",  function() require("harpoon.mark").add_file() end, opts)
 keymap("n", "<leader>ss",  function() require("harpoon.ui").toggle_quick_menu() end, opts)
 
+-- zenmode
+
+keymap("n", "<leader>z",  function() require("zen-mode").toggle() end)
 -- custom
 keymap("n", ";", ":" )
 keymap("n", ":", ";" )
@@ -104,6 +112,7 @@ keymap("n", "}", ":<c-u>execute 'keepjumps normal!' v:count1 . '}'<cr>")
 keymap("n", "{", ":<c-u>execute 'keepjumps normal!' v:count1 . '{'<cr>")
 keymap("n", "n", ":<c-u>execute 'keepjumps normal!' v:count1 . 'n'<cr>")
 keymap("n", "N", ":<c-u>execute 'keepjumps normal!' v:count1 . 'N'<cr>")
+keymap("n", "<leader>r", ":%s//g<left><left>")
 
 keymap("n", "<c-q>", function()
 	vim.lsp.buf.code_action()
@@ -114,7 +123,7 @@ end)
 keymap("v", "<c-q>", function()
 	vim.lsp.buf.code_action()
 end)
-keymap("i", "<c-v>", '<C-r>+')
+keymap("i", "<c-v>", '<C-o>"+P')
 keymap("i", "<c-BS>", '<C-o>db<c-o>x')
 keymap("i", "<c-del> ", "<esc>ldei")
 keymap("v", "<c-c>", '"+ygv<Esc>')

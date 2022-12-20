@@ -15,6 +15,11 @@ local check_backspace = function()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
+local function has_words_before()
+  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+end
+
 local kind_icons = {
 	Text = "",
 	Method = "",
@@ -62,7 +67,7 @@ cmp.setup({
 		}),
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<CR>"] = cmp.mapping.confirm({ select = false }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -72,6 +77,8 @@ cmp.setup({
 				luasnip.expand_or_jump()
 			elseif check_backspace() then
 				fallback()
+      elseif has_words_before() then
+        cmp.complete()
 			else
 				fallback()
 			end
@@ -122,6 +129,7 @@ cmp.setup({
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
+  preselect = cmp.PreselectMode.None,
 	experimental = {
 		ghost_text = true,
 	},

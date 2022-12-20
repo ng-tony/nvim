@@ -33,7 +33,7 @@ vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would sh
 vim.opt.wrap = true -- display lines as one long line
 vim.opt.scrolloff = 15 -- minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8 -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
-vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
+-- vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
 vim.opt.fillchars.eob = " " -- show empty lines at the end of a buffer as ` ` {default `~`}
 vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
 vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/next line when the beginning/end of line is reached
@@ -44,16 +44,17 @@ vim.opt.linebreak = true
 ---
 vim.opt.ve = "block"
 vim.opt.title = true
+vim.opt.spell = false
 vim.opt.relativenumber = true
 vim.opt.winbar = "%f"
 vim.opt.guifont = "JetBrains Mono:h12"
 
 --- g settings
 vim.g.mapleader = " " -- sets vim.g.mapleader
-vim.g.neovide_refresh_rate = 144
-vim.g.neovide_scroll_animation_length = 0.2
-vim.g.neovide_cursor_animation_length = 0
-vim.g.neovide_floating_opacity = 0.95
+-- vim.g.neovide_refresh_rate = 144
+vim.g.neovide_scroll_animation_length = 0.0
+-- vim.g.neovide_cursor_animation_length = 0
+-- vim.g.neovide_floating_opacity = 0.95
 vim.g.terminal_color_0 = "#181818"
 vim.g.terminal_color_1 = "#ab4642"
 vim.g.terminal_color_2 = "#67773c"

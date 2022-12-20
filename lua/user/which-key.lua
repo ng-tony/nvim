@@ -13,5 +13,5 @@ which_key.setup {
     border = "rounded",
     padding = { 2, 2, 2, 2 },
   },
-  disable = { filetypes = { "TelescopePrompt" } },
+  -- disable = { filetypes = { "TelescopePrompt" } },
 }
