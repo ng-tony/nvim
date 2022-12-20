@@ -139,3 +139,5 @@ keymap("v", "{", ":<c-u>execute 'keepjumps normal!' v:count1 . '{'<cr>")
 keymap("c", "<c-v>", "<c-r>+", opts)
 keymap("t", "<Esc>", "<C-\\><C-n>", opts)
 keymap("t", "<C-BS>", "<M-BS>", opts)
+-- Lsp
+keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
