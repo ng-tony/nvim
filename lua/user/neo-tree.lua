@@ -23,7 +23,7 @@ local DefaultFile = ""
 
 neo_tree.setup({
 	filesystem = {
-		-- follow_current_file = true,
+		follow_current_file = true,
 		hijack_netrw_behavior = "open_current",
 		use_libuv_file_watcher = true,
 		-- window = { mappings = { h = "toggle_hidden" } },

@@ -27,10 +27,12 @@ keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-o>", "<C-o>zz", opts)
+keymap("n", "<C-i>", "<C-i>zz", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- keymap("n", "<S-l>", ":bnext<CR>", opts)
+-- keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
@@ -54,12 +56,14 @@ keymap("v", ">", ">gv", opts)
 -- keymap("n", "<leader>o", ":NvimTreeFocus<CR>", opts)
 
 -- NeoTree
-keymap("n", "<leader>e", ":NeoTreeShowToggle<CR>", opts)
-keymap("n", "<leader>o", ":NeoTreeReveal<CR>", opts)
+keymap("n", "<leader>e", ":NeoTreeFocusToggle<CR>", opts)
+keymap("n", "<leader>o", ":NeoTreeFocus<CR>", opts)
+
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>fw", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
+keymap("n", "<leader>fs", ":Telescope spell_suggest<CR>", opts)
 -- keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fF", function()
@@ -113,6 +117,8 @@ keymap("n", "{", ":<c-u>execute 'keepjumps normal!' v:count1 . '{'<cr>")
 keymap("n", "n", ":<c-u>execute 'keepjumps normal!' v:count1 . 'n'<cr>")
 keymap("n", "N", ":<c-u>execute 'keepjumps normal!' v:count1 . 'N'<cr>")
 keymap("n", "<leader>r", ":%s//g<left><left>")
+keymap("n", "[q", ":cp<cr>")
+keymap("n", "]q", ":cn<cr>")
 
 keymap("n", "<c-q>", function()
 	vim.lsp.buf.code_action()
