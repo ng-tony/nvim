@@ -72,7 +72,7 @@ end)
 keymap("n", "gr", ":Telescope lsp_references<CR>", opts)
 keymap("n", "gd", ":Telescope lsp_definitions<CR>", opts)
 keymap("n", "gk", ":Telescope lsp_type_definitions<CR>", opts)
-keymap("n", "fp", ":Telescope neoclip<CR>", {desc = "Neoclip"})
+keymap("n", "<leader>fp", ":Telescope neoclip<CR>", {desc = "Neoclip"})
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
@@ -105,6 +105,7 @@ keymap("n", ";", ":" )
 keymap("n", ":", ";" )
 keymap("v", ";", ":" )
 keymap("v", ":", ";" )
+keymap("n", "<Tab>", "<Esc>")
 keymap("n", "<leader>c", ":call GotoFileLine2()<cr>")
 keymap("n", "<c-c>", '"+yy')
 keymap("n", "<leader>99", ':call Wipeout()<cr>')
@@ -114,8 +115,8 @@ keymap("n", "[<S-d>", function() vim.diagnostic.goto_prev { severity = vim.diagn
 keymap("n", "]<S-d>", function() vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR} end)
 keymap("n", "}", ":<c-u>execute 'keepjumps normal!' v:count1 . '}'<cr>")
 keymap("n", "{", ":<c-u>execute 'keepjumps normal!' v:count1 . '{'<cr>")
-keymap("n", "n", ":<c-u>execute 'keepjumps normal!' v:count1 . 'n'<cr>")
-keymap("n", "N", ":<c-u>execute 'keepjumps normal!' v:count1 . 'N'<cr>")
+-- keymap("n", "n", ":<c-u>execute 'keepjumps normal!' v:count1 . 'n'<cr>")
+-- keymap("n", "N", ":<c-u>execute 'keepjumps normal!' v:count1 . 'N'<cr>")
 keymap("n", "<leader>r", ":%s//g<left><left>")
 keymap("n", "[q", ":cp<cr>")
 keymap("n", "]q", ":cn<cr>")
@@ -145,5 +146,11 @@ keymap("v", "{", ":<c-u>execute 'keepjumps normal!' v:count1 . '{'<cr>")
 keymap("c", "<c-v>", "<c-r>+", opts)
 keymap("t", "<Esc>", "<C-\\><C-n>", opts)
 keymap("t", "<C-BS>", "<M-BS>", opts)
+
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+
+-- local gs = package.loaded.gitsigns
+--GitSigns
+keymap("n", "[g", "<cmd>Gitsigns prev_hunk<cr>", opts)
+keymap("n", "]g", "<cmd>Gitsigns next_hunk<cr>", opts)
