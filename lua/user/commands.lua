@@ -52,3 +52,60 @@ endfunction
     ]],
 	false
 )
+
+vim.api.nvim_exec(
+	[[
+function! Exec_on_term(cmd, pos)
+  exec "normal! ma"
+  let backup_a=@a
+  let backup_b=@b
+  let sep = "------"
+  exec "normal! ?".sep."\<CR>jV/".sep."\<CR>k\"ay"
+  exec "normal! /".sep."\<CR>jO"
+  if a:pos == "next"
+      exec "normal! O".sep
+      exec "normal! jddkko"
+  endif
+  exec "normal! V/".sep."\<CR>kdO"
+  let @b=system(@a)
+  execute "put b"
+  execute "normal! ?".sep."\<CR>jdd"
+  exec "normal 'a"
+  let @b=backup_b
+  let @a=backup_a
+endfunction
+  ]],
+	true
+)
+
+vim.api.nvim_exec(
+	[[
+
+function! NextTextObject(motion, dir)
+  let c = nr2char(getchar())
+
+  if c ==# "b"
+      let c = "("
+  elseif c ==# "B"
+      let c = "{"
+  elseif c ==# "d"
+      let c = "["
+  endif
+
+  exe "normal! ".a:dir.c."v".a:motion.c
+endfunction
+onoremap an :<c-u>call NextTextObject('a', 'f')<cr>
+onoremap an :<c-u>call NextTextObject('a', 'f')<cr>
+xnoremap an :<c-u>call NextTextObject('a', 'f')<cr>
+onoremap in :<c-u>call NextTextObject('i', 'f')<cr>
+xnoremap in :<c-u>call NextTextObject('i', 'f')<cr>
+
+onoremap al :<c-u>call NextTextObject('a', 'F')<cr>
+xnoremap al :<c-u>call NextTextObject('a', 'F')<cr>
+onoremap il :<c-u>call NextTextObject('i', 'F')<cr>
+xnoremap il :<c-u>call NextTextObject('i', 'F')<cr>
+
+  ]],
+	true
+)
+

@@ -51,6 +51,7 @@ vim.opt.guifont = "JetBrains Mono:h12"
 
 --- g settings
 vim.g.mapleader = " " -- sets vim.g.mapleader
+vim.g.maplocalleader = "," -- sets vim.g.mapleader
 -- vim.g.neovide_refresh_rate = 144
 vim.g.neovide_scroll_animation_length = 0.0
 -- vim.g.neovide_cursor_animation_length = 0

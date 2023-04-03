@@ -8,13 +8,14 @@ if not status_ok then
 	return
 end
 
+
 configs.setup({
-  ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python" }, -- put the language you want in this array
-  -- ensure_installed = "all", -- one of "all" or a list of languages
+	ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python" }, -- put the language you want in this array
+	-- ensure_installed = "all", -- one of "all" or a list of languages
 	ignore_install = { "" }, -- List of parsers to ignore installing
 	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  
-  highlight = {
+
+	highlight = {
 		enable = true, -- false will disable the whole extension
 		disable = { "css" }, -- list of language that will be disabled
 	},
@@ -28,4 +29,27 @@ configs.setup({
 		enable_autocmd = false,
 	},
 
+	rainbow = {
+		enable = true,
+		-- list of languages you want to disable the plugin for
+		disable = { "jsx", "cpp" },
+		-- Which query to use for finding delimiters
+		query = "rainbow-parens",
+		-- Highlight the entire buffer all at once
+		strategy = require("ts-rainbow.strategy.local"),
+    hlgroups = {
+      'TSRainbowBlue',
+      'TSRainbowViolet',
+      'TSRainbowYellow'
+    }
+	},
+	-- textobjects = {
+	--   select = {
+	--     enable = true,
+	--     lookahead = true,
+	--     keymaps = {
+	--
+	--     }
+	--   }
+	-- }
 })

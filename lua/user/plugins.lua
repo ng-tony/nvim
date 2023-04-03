@@ -44,13 +44,29 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
 	-- My plugins here
-	-- use({ "ldelossa/litee.nvim" })
-	-- use({
-	-- 	"ldelossa/gh.nvim",
-	-- 	requires = { { "ldelossa/litee.nvim" } },
-	-- })
+	use({
+		"jackMort/ChatGPT.nvim",
+		config = function()
+			require("chatgpt").setup({})
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	})
+	use({ "ldelossa/litee.nvim" })
+	use({ "HiPhish/nvim-ts-rainbow2" })
+	use({
+		"ldelossa/gh.nvim",
+		requires = { { "ldelossa/litee.nvim" } },
+	})
+	use({ "rhysd/clever-f.vim" })
+	use({ "nvim-neorg/neorg" })
 	-- use({ "Exafunction/codeium.vim" })
+	-- use({"diepm/vim-rest-console"})
 	use({ "rareitems/printer.nvim" })
+	use({ "rest-nvim/rest.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "mickael-menu/zk-nvim" })
 	use({
 		"nvim-neo-tree/neo-tree.nvim",
@@ -61,6 +77,8 @@ return packer.startup(function(use)
 			"MunifTanjim/nui.nvim",
 		},
 	})
+	use({ "echasnovski/mini.ai" })
+	-- use({ "wellle/targets.vim" })
 	use({ "folke/zen-mode.nvim" })
 	use({ "folke/which-key.nvim" })
 	use({ "ThePrimeagen/harpoon" })
@@ -69,7 +87,11 @@ return packer.startup(function(use)
 	-- use({ "olimorris/onedarkpro.nvim"})
 	use({ "NvChad/nvim-colorizer.lua" })
 	use({ "Mofiqul/vscode.nvim" })
-	use({ "nvim-treesitter/nvim-treesitter-textobjects" })
+	use({
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		after = "nvim-treesitter",
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
 	use({ "tpope/vim-fugitive" })
 	use({ "rhysd/git-messenger.vim" })
 	use({
@@ -153,3 +175,4 @@ return packer.startup(function(use)
 		require("packer").sync()
 	end
 end)
+

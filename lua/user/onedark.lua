@@ -24,7 +24,7 @@ onedarkpro.setup({
 		none = "NONE",
 	}, -- Override default colors by specifying colors for 'onelight' or 'onedark' themes
 	highlights = {
-    WhichKeyFloat = {bg = "${bg}"},
+		WhichKeyFloat = { bg = "${bg}" },
 		["@annotation"] = { fg = "${orange}" },
 		["@parameter"] = { fg = "${yellow}" },
 		["@parameter.reference"] = { fg = "${yellow}" },
@@ -39,6 +39,14 @@ onedarkpro.setup({
 		CursorLineNrNC = { fg = "${orange}" },
 		["@parameter.typescript"] = { fg = "${orange}" },
 		["@variable.typescript"] = { fg = "${orange}" },
+
+		TSRainbowRed = { fg = "${orange}" },
+		TSRainbowYellow = { fg = "${blue}" },
+		TSRainbowBlue = { fg = "${purple}" },
+		TSRainbowOrange = { fg = "${orange}" },
+		TSRainbowGreen = { fg = "${blue}" },
+		TSRainbowViolet = { fg = "${purple}" },
+		-- TSRainbowCyan
 	}, -- Override default highlight and/or filetype groups
 	-- filetypes = { -- Override which filetype highlight groups are loaded
 	-- 	javascript = true,
